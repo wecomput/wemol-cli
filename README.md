@@ -9,7 +9,7 @@ This repository is designed for two usage paths:
 ## Who this is for
 
 - **CLI users**: want command-line control for discovery, submission, tracking, and output download.
-- **Bio/AI/chem workflow users**: want practical workflows (antibody, ADMET, MHC-I, flow recovery, etc.).
+- **Bio/AI/chem workflow users**: want practical workflows (antibody, ADMET, flow recovery, etc.).
 - **Agent users**: want to use a skill package and delegate setup/operations to an agent.
 
 ## Install
@@ -90,7 +90,6 @@ The skill includes operational workflows for:
 - [Antibody numbering (variable region)](wemol-cli-official/examples/antibody-numbering-variable-region.md)
 - [Protein physicochemical properties](wemol-cli-official/examples/protein-physicochemical-properties.md)
 - [ADMET AI](wemol-cli-official/examples/admet-ai.md)
-- [MHC-I binding prediction](wemol-cli-official/examples/mhc-i-binding-prediction.md)
 - [Flow submit + download recovery](wemol-cli-official/examples/flow-submit-and-download-recovery.md)
 - [Job history recovery](wemol-cli-official/examples/job-history-recovery.md)
 - [Run-limit error handling](wemol-cli-official/examples/module-run-limit-error.md)

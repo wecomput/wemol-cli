@@ -322,7 +322,6 @@ Use examples when task matches known pattern:
 - antibody numbering: `examples/antibody-numbering-variable-region.md`
 - protein descriptors: `examples/protein-physicochemical-properties.md`
 - ADMET CSV: `examples/admet-ai.md`
-- MHC-I minimal output: `examples/mhc-i-binding-prediction.md`
 - history recovery: `examples/job-history-recovery.md`
 - flow submit + download: `examples/flow-submit-and-download-recovery.md`
 - run-limit error: `examples/module-run-limit-error.md`
