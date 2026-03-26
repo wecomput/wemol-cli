@@ -8,12 +8,12 @@ This repository is designed for two usage paths:
 
 ## What's new in v1.1.0
 
-- Added the `docs` command group: `docs list`, `docs get`, and `docs search`, backed by a unified public bilingual documentation set with stable short IDs that can be reused across languages.
-- Improved `module search`, `flow search`, and `job search` with Markdown/doc-based recall, hit explanations, and `matched_languages` so matches can be traced to Chinese, English, or both.
-- Upgraded cache and query performance with incremental sync, local SQLite/FTS indexing, delete reconciliation, and single-flight deduplication.
-- Replaced `job output` with `job result`; result previews are more readable by default, binary outputs are summarized with a download hint, and `job download` restores upstream input artifacts.
-- Added safer execution guards including `job submit --dry-run`, strict unknown argument/subcommand errors, and more reliable upload/download and submit-id recovery behavior.
-- Improved CLI observability with `--describe`, clearer `job wait` / `job diagnose` / list/search output, and stricter confirmation guards for write and high-risk operations.
+- Added a dedicated `docs` command group with `docs list`, `docs get`, and `docs search`, making it easier to navigate the public bilingual documentation set from the CLI.
+- Improved `module search`, `flow search`, and `job search` so results are easier to understand, with clearer hit explanations and language hints for Chinese, English, or both.
+- Made list and search interactions faster and more stable, reducing repeated fetches and helping cached results stay fresher during daily use.
+- Replaced `job output` with `job result`, giving a friendlier default result view while keeping file recovery straightforward through `job download`.
+- Added safer execution checks such as `job submit --dry-run` and stricter argument validation to reduce accidental submits and mis-typed commands.
+- Improved day-to-day usability with `--describe`, clearer `job wait` / `job diagnose` output, and stronger confirmation guards for write and high-risk operations.
 
 ## Who this is for
 
