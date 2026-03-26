@@ -6,6 +6,15 @@ This repository is designed for two usage paths:
 - **CLI path**: run `wemol-cli` directly for module/flow/job operations.
 - **Agent path**: install the skill package in claw (or any skill-capable agent) and let the agent apply built-in install/update workflows.
 
+## What's new in v1.1.0
+
+- Added the `docs` command group: `docs list`, `docs get`, and `docs search`, backed by a unified public bilingual documentation set with stable short IDs that can be reused across languages.
+- Improved `module search`, `flow search`, and `job search` with Markdown/doc-based recall, hit explanations, and `matched_languages` so matches can be traced to Chinese, English, or both.
+- Upgraded cache and query performance with incremental sync, local SQLite/FTS indexing, delete reconciliation, and single-flight deduplication.
+- Replaced `job output` with `job result`; result previews are more readable by default, binary outputs are summarized with a download hint, and `job download` restores upstream input artifacts.
+- Added safer execution guards including `job submit --dry-run`, strict unknown argument/subcommand errors, and more reliable upload/download and submit-id recovery behavior.
+- Improved CLI observability with `--describe`, clearer `job wait` / `job diagnose` / list/search output, and stricter confirmation guards for write and high-risk operations.
+
 ## Who this is for
 
 - **CLI users**: want command-line control for discovery, submission, tracking, and output download.
@@ -19,16 +28,16 @@ This repository is designed for two usage paths:
 Use release assets from:
 - https://github.com/wecomput/wemol-cli/releases
 
-For `v1.0.0`, the release assets are:
-- `wemol-cli-v1.0.0-linux-x86_64-musl.tar.gz`
-- `wemol-cli-v1.0.0-macos-apple-silicon.zip`
-- `wemol-cli-v1.0.0-macos-intel.zip`
-- `wemol-cli-v1.0.0-windows-x86_64.zip`
+For `v1.1.0`, the release assets are:
+- `wemol-cli-v1.1.0-linux-x86_64-musl.tar.gz`
+- `wemol-cli-v1.1.0-macos-apple-silicon.zip`
+- `wemol-cli-v1.1.0-macos-intel.zip`
+- `wemol-cli-v1.1.0-windows-x86_64.zip`
 - `wemol-cli-official.tar.gz` (skill package)
 - `SHA256SUMS`
 
 Recommended approach:
-1. Open the target release (for example `v1.0.0`).
+1. Open the target release (for example `v1.1.0`).
 2. Download the matching binary archive for your platform.
 3. Add the binary directory to `PATH` if needed.
 4. Verify with:
@@ -61,15 +70,19 @@ wemol-cli --help
 wemol-cli host
 wemol-cli lang
 wemol-cli login
-wemol-cli module search antibody
+wemol-cli docs search antibody humanization
+wemol-cli flow search antibody humanization
+wemol-cli module search antibody numbering
 ```
 
 Typical flow:
-1. Discover capability: `module search` or `flow search`
-2. Inspect schema: `module get <id> --params-json` or `flow get <id> --params-template`
-3. Submit: `job submit ...`
-4. Track: `job status`, `job progress`, `job wait`
-5. Recover outputs: `job tasks`, `job output`, `job download`
+1. Orient with public docs: `docs search`, `docs list`, `docs get`
+2. Discover execution candidates: `flow search` or `module search`
+3. Inspect schema: `module get <id> --params-json` or `flow get <id> --params-template`
+4. Validate before submit when needed: `job submit ... --dry-run`
+5. Submit: `job submit ...`
+6. Track: `job status`, `job progress`, `job wait`, `job diagnose`
+7. Recover outputs: `job tasks`, `job result`, `job download`
 
 ## Use with agents (skill package)
 
@@ -82,34 +95,24 @@ You can:
 The skill includes operational workflows for:
 - install/update checks
 - auth/session/host/lang handling
+- docs-first capability discovery with `docs search` / `docs list` / `docs get`
 - module/flow parameter discovery
-- job diagnosis and output recovery
+- dry-run validation, job diagnosis, and result/download recovery
+- agent-aware CLI usage constraints exposed through `--describe`
 
-## Examples
+## Repository contents
 
-- [Antibody numbering (variable region)](wemol-cli-official/examples/antibody-numbering-variable-region.md)
-- [Protein physicochemical properties](wemol-cli-official/examples/protein-physicochemical-properties.md)
-- [ADMET AI](wemol-cli-official/examples/admet-ai.md)
-- [Flow submit + download recovery](wemol-cli-official/examples/flow-submit-and-download-recovery.md)
-- [Job history recovery](wemol-cli-official/examples/job-history-recovery.md)
-- [Run-limit error handling](wemol-cli-official/examples/module-run-limit-error.md)
-
-## References
-
-- [Install](wemol-cli-official/references/install.md)
-- [Session and host](wemol-cli-official/references/session-and-host.md)
-- [Module workflow](wemol-cli-official/references/module-workflow.md)
-- [Flow workflow](wemol-cli-official/references/flow-workflow.md)
-- [Job workflow](wemol-cli-official/references/job-workflow.md)
-- [Output and agent notes](wemol-cli-official/references/output-and-agent-notes.md)
+- [Agent operating manual](SKILL.md)
+- [Install reference](references/install.md)
+- [Requirement to execution reference](references/requirement-to-execution.md)
 
 ## Release artifacts (suggested)
 
-Current `v1.0.0` artifacts:
-- `wemol-cli-v1.0.0-linux-x86_64-musl.tar.gz`
-- `wemol-cli-v1.0.0-macos-apple-silicon.zip`
-- `wemol-cli-v1.0.0-macos-intel.zip`
-- `wemol-cli-v1.0.0-windows-x86_64.zip`
+Current `v1.1.0` artifacts:
+- `wemol-cli-v1.1.0-linux-x86_64-musl.tar.gz`
+- `wemol-cli-v1.1.0-macos-apple-silicon.zip`
+- `wemol-cli-v1.1.0-macos-intel.zip`
+- `wemol-cli-v1.1.0-windows-x86_64.zip`
 - `wemol-cli-official.tar.gz`
 - `SHA256SUMS`
 
@@ -123,13 +126,24 @@ wemol-cli login
 wemol-cli account
 ```
 
+### How do I search the public docs first?
+Run:
+
+```bash
+wemol-cli docs search antibody humanization
+wemol-cli docs list
+wemol-cli docs get <doc_id>
+```
+
 ### Output key is missing but job seems done
 Run:
 
 ```bash
-wemol-cli job tasks <job_id>
+wemol-cli job result <job_id>
 wemol-cli job download <job_id>
 ```
+
+`job result` previews structured keys. For binary artifacts, use `job download`.
 
 ### Security prompts on first launch
 Current macOS/Windows builds may trigger Gatekeeper/SmartScreen prompts on first run. This is expected until full signing/notarization rollout.
