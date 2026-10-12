@@ -2,7 +2,7 @@
 
 Connect your agent to WeMol documentation, modules, workflows, jobs, and result files. The CLI runs independently and provides a terminal UI for accounts, approvals, activity, and job tracking. Rust and Node.js are not required to use it.
 
-CLI **0.3.9** includes the **`wemol` Skill 0.3.0**. This version is currently supplied as a local package; check [GitHub Releases](https://github.com/wecomput/wemol-cli/releases) for published downloads. Legacy v1.0.0/v1.1.0 packages use different commands; see [Migration](#migration).
+CLI **0.3.9** includes the **`wemol` Skill 0.3.0**. Download it from [GitHub Releases](https://github.com/wecomput/wemol-cli/releases/tag/v0.3.9). Legacy v1.0.0/v1.1.0 packages use different commands; see [Migration](#migration).
 
 ## Install
 
@@ -10,13 +10,13 @@ Choose the archive for your device:
 
 | Device | Archive |
 | --- | --- |
-| Apple Silicon Mac | `wemol-cli-v0.3.9-macos-arm64.zip` |
-| Intel Mac | `wemol-cli-v0.3.9-macos-x86_64.zip` |
-| x64 Windows | `wemol-cli-v0.3.9-windows-x86_64.zip` |
-| x64 Linux | `wemol-cli-v0.3.9-linux-x86_64-musl.tar.gz` |
-| All four platforms | `wemol-cli-v0.3.9-all-platforms.zip` |
+| Apple Silicon Mac | [wemol-cli-v0.3.9-macos-arm64.zip](https://github.com/wecomput/wemol-cli/releases/download/v0.3.9/wemol-cli-v0.3.9-macos-arm64.zip) |
+| Intel Mac | [wemol-cli-v0.3.9-macos-x86_64.zip](https://github.com/wecomput/wemol-cli/releases/download/v0.3.9/wemol-cli-v0.3.9-macos-x86_64.zip) |
+| x64 Windows | [wemol-cli-v0.3.9-windows-x86_64.zip](https://github.com/wecomput/wemol-cli/releases/download/v0.3.9/wemol-cli-v0.3.9-windows-x86_64.zip) |
+| x64 Linux | [wemol-cli-v0.3.9-linux-x86_64-musl.tar.gz](https://github.com/wecomput/wemol-cli/releases/download/v0.3.9/wemol-cli-v0.3.9-linux-x86_64-musl.tar.gz) |
+| All four platforms | [wemol-cli-v0.3.9-all-platforms.zip](https://github.com/wecomput/wemol-cli/releases/download/v0.3.9/wemol-cli-v0.3.9-all-platforms.zip) |
 
-Verify the archive against its entry in the accompanying `SHA256SUMS`: use `shasum -a 256 <archive>` on macOS, `sha256sum <archive>` on Linux, or `Get-FileHash -Algorithm SHA256 <archive>` on Windows. Extract it; each package includes the executable, this README, and checksums for the extracted files.
+Verify the archive against its entry in the accompanying [SHA256SUMS](https://github.com/wecomput/wemol-cli/releases/download/v0.3.9/SHA256SUMS): use `shasum -a 256 <archive>` on macOS, `sha256sum <archive>` on Linux, or `Get-FileHash -Algorithm SHA256 <archive>` on Windows. Extract it; each package includes the executable, this README, and checksums for the extracted files.
 
 Place the executable in a permanent user directory, preserve execution permissions, and add that directory to your user PATH if needed. Recommended locations:
 
