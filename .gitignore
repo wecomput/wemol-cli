@@ -1,1 +1,2 @@
-docs/
+# Generated Release notes, build records, manifests, and attachments stay local.
+/release/
