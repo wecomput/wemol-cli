@@ -4,6 +4,8 @@ Connect your agent to WeMol documentation, modules, workflows, jobs, and result 
 
 CLI **1.2.0** includes the **`wemol` Skill 0.3.0**. Download it from [GitHub Releases](https://github.com/wecomput/wemol-cli/releases/tag/v1.2.0). Legacy v1.0.0/v1.1.0 packages use different commands; see [Migration](#migration).
 
+Source maintenance now lives in `wemol-tools/products/cli`, with the adjacent `rust-wemol-sdk` API dependency. From the tools workspace, `cargo build --locked --release -p wemol-cli` builds only the CLI dependency closure; MCP and an API Key are not prerequisites. Build and native validation instructions are maintained with that source. Published downloads and their checksums below retain their original release identity.
+
 ## Install
 
 Choose the archive for your device:
